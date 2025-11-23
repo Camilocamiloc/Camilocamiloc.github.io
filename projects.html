@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Proyectos de Automatización, Visualización y Machine Learning">
+    <title>Proyectos - Portafolio Analista de Datos</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navegación -->
+    <nav>
+        <div class="container">
+            <div class="logo">💾 Data Portafolio</div>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="projects.html" class="active">Proyectos</a></li>
+                <li><a href="experience.html">Experiencia</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="container main-container">
+        <div class="content-card">
+            <h2 class="section-title">Proyectos Realizados</h2>
+            
+            <!-- Automatización de Procesos -->
+            <div class="category-section">
+                <h3 class="category-title">🔄 Automatización de Procesos</h3>
+                <div class="projects-grid">
+                    <!-- Proyecto 1 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <p class="project-category">Automatización • Transporte Masivo</p>
+                            <h3>Extracción de Incidencias con RegEx</h3>
+                        </div>
+                        <div class="project-body">
+                            <h4>Necesidad:</h4>
+                            <p>En el centro de mando operacional de una empresa de transporte, las fallas de cómputo que 
+                                sacan de servicio a los vehículos se registran en archivos Excel, donde las incidencias y 
+                                vehículos afectados están en una misma celda. Este proceso manual de extracción mensual 
+                                tomaba alrededor de 8 horas.</p>
+                            
+                            <h4>Solución:</h4>
+                            <p>Usando expresiones regulares en Python, se automatizó la extracción de cada vehículo con su 
+                                incidencia, reduciendo el tiempo a minutos y eliminando errores manuales.</p>
+                            
+                            <h4>Resultados:</h4>
+                            <ul>
+                                <li>Reducción de tiempo de 8 horas a una media de 5 minutos.</li>
+                                <li>Eliminación de errores de transcripción manual.</li>
+                            </ul>
+                            <h4 style="text-align: center;"">Ejemplo data sin procesar</h4>
+                            <img src="img/re2.jpg" alt="Datanoprocess" style="max-width:100%; height:auto; margin-top:15px;" />
+                            
+                            <h4 style="text-align: center;"">Ejemplo data procesada</h4>
+                            <img src="img/re_ok.png" alt="processedData" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
+
+
+
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">RegEx</span>
+                                <span class="tag">Excel</span>
+                            </div>
+                            
+                            <span class="metric">⚡ 99% más eficiente</span>
+                        </div>
+                    </div>
+
+                    <!-- Proyecto 2 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <p class="project-category">Automatización • Facturación</p>
+                            <h3>Sistema de Facturación PyQt5</h3>
+                        </div>
+                        <div class="project-body">
+                            <h4>Necesidad:</h4>
+                            <p>Múltiples procesos de facturación manuales para diferentes servicios de software generaban alta carga operativa.</p>
+                            
+                            <h4>Solución:</h4>
+                            <p>Creación de interfaz gráfica con PyQt5 para automatización de 5 procesos de facturación, con carga de archivos Excel/CSV y procesamiento automatizado.</p>
+                            
+                            <h4>Resultados:</h4>
+                            <ul>
+                                <li>Reducción de 5 días a 2 días de trabajo.</li>
+                                <li>60% menos carga operativa.</li>
+                                <li>Disminución de errores humanos.</li>
+                                <li>Interfaz intuitiva sin código expuesto.</li>
+                            </ul>
+
+
+                            <h4 style="text-align: center;"">Home interfaz</h4>
+                            <img src="img/home_asistenteF.jpg" alt="Datanoprocess" style="max-width:100%; height:auto; margin-top:15px;" />
+                            
+                            <h4 style="text-align: center;"">Módulo de facturación</h4>
+                            <img src="img/modulo_asistenteF.png" alt="processedData" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
+
+
+                            
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">PyQt5</span>
+                                <span class="tag">Pandas</span>
+                            </div>
+                            
+                            <span class="metric">📉 60% de reducción operativa</span>
+                        </div>
+                    </div>
+
+                    <!-- Proyecto 3 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <p class="project-category">Automatización • end to end</p>
+                            <h3>Sistema Integral Generación de Notas Crédito</h3>
+                        </div>
+                        <div class="project-body">
+                            <h4>Necesidad:</h4>
+                            <p>Tarea manual de generación de notas crédito por concepto de devoluciones por facturación, donde
+                                no se contaba con trasa de la información y se incurría en errores manuales.</p>
+                            
+                            <h4>Solución:</h4>
+                            <p> Se desarrolla un módulo en interfaz de power apps, para ingreso de data, una lista de Sharepoint
+                                para almacenamiento de data y un módulo en PyQT5 para creación automática de notas crédito con la 
+                                data de la lista.
+                            </p>
+                            
+                            <h4>Resultados:</h4>
+                            <ul>
+                                <li>Disminución operativa.</li>
+                                <li>Fuente de datos confiable.</li>
+                                <li>Solución democratizada sin exposición de código.</li>
+                                
+                            </ul>
+
+
+                            <h4 style="text-align: center;"">Módulo Notas Crédito Power Apps</h4>
+                            <img src="img/notas_inter.png" alt="Datanoprocess" style="max-width:100%; height:auto; margin-top:15px;" />
+                            
+                            <h4 style="text-align: center;""> List de Sharepoint para almacenamiento</h4>
+                            <img src="img/lista_notasC.png" alt="processedData" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
+
+                            <h4 style="text-align: center;"">Módulo para Generación Automática</h4>
+                            <img src="img/modulo_notasC.png" alt="Datanoprocess" style="max-width:100%; height:auto; margin-top:15px;" />
+
+                            
+                            <div class="project-tags">
+                                <span class="tag">Power Apps</span>
+                                <span class="tag">Lists Sharepoint</span>
+                                <span class="tag">Python</span>
+                            </div>
+                            
+                            <span class="metric">✅ Estandarización</span>
+                        </div>
+                    </div>
+
+                    <!-- Proyecto 4 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <p class="project-category">Automatización • Power Platform</p>
+                            <h3>Sistema Integral Data-Driven</h3>
+                        </div>
+                        <div class="project-body">
+                            <h4>Necesidad:</h4>
+                            <p>Comunicación no estructurada entre área comercial y facturación mediante Excel y correo, generando errores y datos inconsistentes.</p>
+                            
+                            <h4>Solución:</h4>
+                            <p>Ecosistema completo: Power Apps (interfaz de captura), SharePoint (almacenamiento), Power Automate (alertas y flujos) y Python (automatización).</p>
+                            
+                            <h4>Resultados:</h4>
+                            <ul>
+                                <li>Centralización y estandarización de información.</li>
+                                <li>Reducción de errores de digitación y cálculos.</li>
+                                <li>Automatización basada en datos confiables.</li>
+                                <li>Mejor distribución de responsabilidades.</li>
+                            </ul>
+
+
+
+                            <h4 style="text-align: center;"">Home interfaz</h4>
+                            <img src="img/app.png" alt="Datanoprocess" style="max-width:100%; height:auto; margin-top:15px;" />
+                            
+                            <h4 style="text-align: center;""> Módulo de Registro</h4>
+                            <img src="img/app2.png" alt="processedData" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
+
+                            <h4 style="text-align: center;"">Lists para Almacenamiento integrado</h4>
+                            <img src="img/listas.png" alt="Datanoprocess" style="max-width:100%; height:auto; margin-top:15px;" />
+
+                            
+                            
+                            <div class="project-tags">
+                                <span class="tag">Power Apps</span>
+                                <span class="tag">SharePoint</span>
+                                <span class="tag">Power Automate</span>
+                                <span class="tag">Python</span>
+                            </div>
+                            
+                            <span class="metric">🎯 Sistema Integral</span>
+                        </div>
+                    </div>
+                    <!-- Proyecto 5 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <p class="project-category">Automatización • Finanzas</p>
+                            <h3>Filtrado de Compensación con Streamlit</h3>
+                        </div>
+                        <div class="project-body">
+                            <h4>Necesidad:</h4>
+                            <p>Proceso manual complejo de filtrado de transacciones compensadas con múltiples criterios y columnas en archivos extensos.</p>
+                            
+                            <h4>Solución:</h4>
+                            <p>Aplicación web con Streamlit que permite carga de archivos de compensación y aplicación automática de filtros predefinidos mediante listas YAML.</p>
+                            
+                            <h4>Resultados:</h4>
+                            <ul>
+                                <li>Estandarización de métodos de filtrado.</li>
+                                <li>Reducción de casos en mesa de ayuda.</li>
+                                <li>Mejora en confiabilidad del servicio.</li>
+                                <li>Menor carga operativa para entidades.</li>
+                            </ul>
+                            
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Streamlit</span>
+                                <span class="tag">YAML</span>
+                            </div>
+                            
+                            <span class="metric">✅ Estandarización</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visualización de Datos -->
+            <div class="category-section">
+                <h3 class="category-title">📊 Visualización de Datos</h3>
+                <div class="projects-grid">
+                    <!-- Proyecto 1-->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <p class="project-category">Visualización • Ganadería</p>
+                            <h3>Dashboard Búfalo en Colombia</h3>
+                        </div>
+                        <div class="project-body">
+                            <h4>Necesidad:</h4>
+                            <p>Productores ganaderos requerían conocer el estado del arte de la especie bufalina: presencia mundial y nacional, producción láctea/cárnica, y concentración territorial.</p>
+                            
+                            <h4>Solución:</h4>
+                            <p>Desarrollo de interfaz interactiva con Taipy en Python para visualización de datos demográficos y productivos del búfalo.</p>
+                            
+                            <h4>Resultados:</h4>
+                            <ul>
+                                <li>Presentación integral y asequible de datos.</li>
+                                <li>Comprensión para público técnico y no técnico.</li>
+                                <li>Comunicación efectiva de insights de mercado.</li>
+                            </ul>
+                            
+                            <!-- Imagen del proyecto -->
+                            <img src="img/buf2.png" alt="Dashboard Búfalo en Colombia" style="max-width:100%; height:auto; margin-top:15px;" />
+
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Taipy</span>
+                                <span class="tag">Visualización</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proyecto 2 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <p class="project-category">Visualización • Inventario</p>
+                            <h3>Control de Repuestos Power BI</h3>
+                        </div>
+                        <div class="project-body">
+                            <h4>Necesidad:</h4>
+                            <p>Control de inventario de repuestos con datos no estructurados en Excel. Identificar faltantes comunes y repuestos de bajo recambio para optimizar stock.</p>
+                            
+                            <h4>Solución:</h4>
+                            <p>Dashboard de Power BI integrado con script Python para extracción mediante RegEx de múltiples repuestos en una misma celda.</p>
+                            
+                            <h4>Resultados:</h4>
+                            <ul>
+                                <li>Identificación de repuestos con mayor/menor uso.</li>
+                                <li>Análisis de tendencias temporales.</li>
+                                <li>Recomendaciones de mejores prácticas en Excel.</li>
+                                <li>Compras basadas en datos.</li>
+                            </ul>
+                            
+                            <img src="img/falta_rep.png" alt="Dashboard Búfalo en Colombia" style="max-width:100%; height:auto; margin-top:15px;" />
+                            <img src="img/falta_rep2.jpg" alt="Dashboard Búfalo en Colombia" style="max-width:100%; height:auto; margin-top:15px;" />
+
+                            <div class="project-tags">
+                                <span class="tag">Power BI</span>
+                                <span class="tag">Python</span>
+                                <span class="tag">RegEx</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Proyecto 3 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <p class="project-category">Visualización • Finanzas</p>
+                            <h3>Dashboard Canales Transaccionales</h3>
+                        </div>
+                        <div class="project-body">
+                            <h4>Necesidad:</h4>
+                            <p>Entidad financiera requería identificar uso de canales transaccionales para mejorar servicios, difundir beneficios y ajustar tarifas.</p>
+                            
+                            <h4>Solución:</h4>
+                            <p>Dashboard en Power BI con consolidación mensual de uso de canales: usuarios, montos individuales/totales, medios virtuales y físicos.</p>
+                            
+                            <h4>Resultados:</h4>
+                            <ul>
+                                <li>Información clara del uso de canales.</li>
+                                <li>Soporte para decisiones comerciales.</li>
+                                <li>Mejora en estrategia de servicio al cliente.</li>
+                            </ul>
+
+                            <img src="img/canales_trx.png" alt="Dashboard canales transaccionales" style="max-width:100%; height:auto; margin-top:15px;" />
+                            
+                            <div class="project-tags">
+                                <span class="tag">Power BI</span>
+                                <span class="tag">SQL</span>
+                                <span class="tag">Analytics</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Machine Learning -->
+            <div class="category-section">
+                <h3 class="category-title">🤖 Machine Learning</h3>
+                <div class="projects-grid">
+                    <!-- Proyecto 1 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <p class="project-category">ML • Clasificación</p>
+                            <h3>Random Forest - Mantenimiento Preventivo</h3>
+                        </div>
+                        <div class="project-body">
+                            <h4>Necesidad:</h4>
+                            <p>Selección manual diaria de vehículos para mantenimiento preventivo en flota de +200 unidades. 
+                                Proceso tomaba 2 horas considerando tipo, placa par/impar, días mínimos y capacidad.</p>
+                            
+                            <h4>Solución:</h4>
+                            <p> Modelo Random Forest para clasificación automática de vehículos para mantenimiento (modelo entrenado con
+                                1 año de datos históricos). </p>
+                            
+                            <h4>Resultados:</h4>
+                            <ul>
+                                
+                                <li>Reducción del proceso de clasificación manual de 2h a 8 minutos con la automatización.</li>
+                                <li>Ahorro de 9 horas semanales.</li>
+                                <li>Democratización del proceso.</li>
+                            </ul>
+
+
+                            <h4 style="text-align: center;"">Árbol del RF</h4>
+                            <img src="img/arbol de RF.JPG.png" alt="Datanoprocess" style="max-width:100%; height:auto; margin-top:15px;" />
+                            
+                            <h4 style="text-align: center;""> Rendimiento Final</h4>
+                            <img src="img/rf5.jpg.png" alt="processedData" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
+                            <img src="img/rf6.jpg" alt="processedData" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
+                            
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Scikit-learn</span>
+                                <span class="tag">Random Forest</span>
+                            </div>
+                            
+                            
+                            <span class="metric">⚡ 93% más rápido</span>
+                        </div>
+                    </div>
+
+                    <!-- Proyecto 2 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <p class="project-category">ML • Detección de Anomalías</p>
+                            <h3>Isolation Forest - Detección de Fraude</h3>
+                        </div>
+                        <div class="project-body">
+                            <h4>Necesidad:</h4>
+                            <p>Identificar comportamientos transaccionales anómalos en sistema de pago con +1 millón de transacciones mensuales sin etiquetas previas de fraude.</p>
+                            
+                            <h4>Solución:</h4>
+                            <p>Implementación de Isolation Forest (método no supervisado) que aísla datos inusuales sin perfiles previos. Manejo de múltiples dimensiones y estandarización de datos.</p>
+                            
+                            <h4>Resultados:</h4>
+                            <ul>
+                                <li>Aumento de 0.01-0.02% en detección de anomalías.</li>
+                                <li>1000-2000 transacciones adicionales identificadas/mes.</li>
+                                <li>Complemento al sistema heurístico existente.</li>
+                                <li>Detección de aumentos inusuales en transaccionalidad.</li>
+                            </ul>
+                            
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Isolation Forest</span>
+                                <span class="tag">Anomaly Detection</span>
+                            </div>
+                            
+                            <span class="metric">🔍 +1000 alertas/mes</span>
+                        </div>
+                    </div>
+
+                    <!-- Proyecto 3 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <p class="project-category">ML • Clustering</p>
+                            <h3>K-Means - Segmentación de Clientes</h3>
+                        </div>
+                        <div class="project-body">
+                            <h4>Necesidad:</h4>
+                            <p>Empresa financiera requería clasificar clientes según flujo de transaccionalidad y montos para encontrar 
+                                oportunidades comerciales y mejorar servicios.</p>
+                            
+                            <h4>Solución:</h4>
+                            <p>Clasificación mediante K-Means por transaccionalidad mensual y acumulada semestral. Monitoreo continuo del 
+                                comportamiento de clientes.</p>
+                            
+                            <h4>Resultados:</h4>
+                            <ul>
+                                <li>Identificación de 4 grupos: Muy alta, alta, mediana y baja transaccionalidad.</li>
+                                <li>Monitoreo mensual y semestral.</li>
+                                <li>Ajustes comerciales basados en datos.</li>
+                                <li>Mejora en estrategias de fidelización.</li>
+                            </ul>
+
+                            <img src="img/clusters.png" alt="processedData" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
+
+
+                            
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">K-Means</span>
+                                <span class="tag">Clustering</span>
+                                <span class="tag">Segmentación</span>
+                            </div>
+                            
+                            <span class="metric">👥 Clientes Segmentados</span>
+                        </div>
+                    </div>
+
+                    <!-- Proyecto 4 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <p class="project-category">ML • Analísis de Sentimientos con IA</p>
+                            <h3>Modelo Preentrenado - Sentiment Analysis</h3>
+                        </div>
+                        <div class="project-body">
+                            <h4>Necesidad:</h4>
+                            <p> Se requería optimizar y agilizar la clasificación de comentarios de nueva app lanzada al mercado
+                                para realizar análisis de acogida.</p>
+                            
+                            <h4>Solución:</h4>
+                            <p>Se implementa un sistema de análisis de sentimientos, utilizando un modelo de lenguaje preentrenado
+                                basado en Transformers (Hugging Face) multilenguaje. Se disponibiliza en una interfaz construida en Streamlit
+                                para clasificación de mensajes individuales y un Script para la clasificación masiva de mensajes.</p>
+                            
+                            <h4>Resultados:</h4>
+                            <ul>
+                                <li>Clasificación automática de mensajes.</li>
+                                <li>Identificación optimizada de oportunidades de mejora.</li>
+                                <li>Feeedback estructurado que ayuda a tomar decisiones.</li>
+                                <li>Ahorro significativo en la tarea de análisis de comentarios.</li>
+                            </ul>
+
+                            <h4 style="text-align: center;"">Interfaz Streamlit</h4>
+                            <img src="img/sentimental.png" alt="processedData" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
+                             <h4 style="text-align: center;"">Ejemplo clasificación múltiple</h4>
+                            <img src="img/sentimental_masiv.png" alt="processedData" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
+                            
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Transformers</span>
+                                <span class="tag">Sentiment Analysis</span>
+                                <span class="tag"></span>
+                            </div>
+                            
+                            <span class="metric">☑️ Baja operatividad</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Portafolio Profesional - Análisis y Ciencia de datos</p>
+            <p style="margin-top: 10px;">Cristian Camilo Valencia</p>
+        </div>
+    </footer>
+
+    <!-- Botón Scroll to Top -->
+    <div class="scroll-top" onclick="scrollToTop()">↑</div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
