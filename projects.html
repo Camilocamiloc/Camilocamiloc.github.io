@@ -24,6 +24,214 @@
     <div class="container main-container">
         <div class="content-card">
             <h2 class="section-title">Proyectos Realizados</h2>
+
+
+
+
+            <!-- Machine Learning -->
+            <div class="category-section">
+                <h3 class="category-title">🤖 Machine Learning y Analítica Aplicada</h3>
+                <div class="projects-grid">
+                    <!-- Proyecto 1 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <p class="project-category">ML • Clasificación</p>
+                            <h3>Random Forest - Mantenimiento Preventivo</h3>
+                        </div>
+                        <div class="project-body">
+                            <h4>Necesidad:</h4>
+                            <p>Selección manual diaria de vehículos para mantenimiento preventivo en flota de +200 unidades. 
+                                Proceso tomaba 2 horas considerando tipo, placa par/impar, días mínimos y capacidad.</p>
+                            
+                            <h4>Solución:</h4>
+                            <p> Modelo Random Forest para clasificación automática de vehículos para mantenimiento (modelo entrenado con
+                                1 año de datos históricos). </p>
+                            
+                            <h4>Resultados:</h4>
+                            <ul>
+                                
+                                <li>Reducción del proceso de clasificación manual de 2h a 8 minutos con la automatización.</li>
+                                <li>Ahorro de 9 horas semanales.</li>
+                                <li>Democratización del proceso.</li>
+                            </ul>
+
+
+                            <h4 style="text-align: center;"">Árbol del RF</h4>
+                            <img src="img/arbol de RF.JPG.png" alt="Datanoprocess" style="max-width:100%; height:auto; margin-top:15px;" />
+                            
+                            <h4 style="text-align: center;""> Rendimiento Final</h4>
+                            <img src="img/rf5.jpg.png" alt="RF" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
+                            <img src="img/rf6.jpg" alt="RF2" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
+                            
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Scikit-learn</span>
+                                <span class="tag">Random Forest</span>
+                            </div>
+                            
+                            
+                            <span class="metric">⚡ 93% más rápido</span>
+                        </div>
+                    </div>
+
+                    <!-- Proyecto 2 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <p class="project-category">ML • Detección de Anomalías</p>
+                            <h3>Isolation Forest - Detección de Fraude</h3>
+                        </div>
+                        <div class="project-body">
+                            <h4>Necesidad:</h4>
+                            <p>Identificar comportamientos transaccionales anómalos en sistema de pago con +1 millón de transacciones mensuales sin etiquetas previas de fraude.</p>
+                            
+                            <h4>Solución:</h4>
+                            <p>Implementación de Isolation Forest (método no supervisado) que aísla datos inusuales sin perfiles previos. Manejo de múltiples dimensiones y estandarización de datos.</p>
+                            
+                            <h4>Resultados:</h4>
+                            <ul>
+                                <li>Aumento de 0.01-0.02% en detección de anomalías.</li>
+                                <li>1000-2000 transacciones adicionales identificadas/mes.</li>
+                                <li>Complemento al sistema heurístico existente.</li>
+                                <li>Detección de aumentos inusuales en transaccionalidad.</li>
+                            </ul>
+                            
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Isolation Forest</span>
+                                <span class="tag">Anomaly Detection</span>
+                            </div>
+                            
+                            <span class="metric">🔍 +1000 alertas/mes</span>
+                        </div>
+                    </div>
+
+                    <!-- Proyecto 3 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <p class="project-category">ML • Clustering</p>
+                            <h3>K-Means - Segmentación de Clientes</h3>
+                        </div>
+                        <div class="project-body">
+                            <h4>Necesidad:</h4>
+                            <p>Empresa financiera requería clasificar clientes según flujo de transaccionalidad y montos para encontrar 
+                                oportunidades comerciales y mejorar servicios.</p>
+                            
+                            <h4>Solución:</h4>
+                            <p>Clasificación mediante K-Means por transaccionalidad mensual y acumulada semestral. Monitoreo continuo del 
+                                comportamiento de clientes.</p>
+                            
+                            <h4>Resultados:</h4>
+                            <ul>
+                                <li>Identificación de 4 grupos: Muy alta, alta, mediana y baja transaccionalidad.</li>
+                                <li>Monitoreo mensual y semestral.</li>
+                                <li>Ajustes comerciales basados en datos.</li>
+                                <li>Mejora en estrategias de fidelización.</li>
+                            </ul>
+
+                            <img src="img/clusters.png" alt="clusters" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
+
+
+                            
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">K-Means</span>
+                                <span class="tag">Clustering</span>
+                                <span class="tag">Segmentación</span>
+                            </div>
+                            
+                            <span class="metric">👥 Clientes Segmentados</span>
+                        </div>
+                    </div>
+
+                    <!-- Proyecto 4 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <p class="project-category">ML • Analísis de Sentimientos con IA</p>
+                            <h3>Modelo Preentrenado - Sentiment Analysis</h3>
+                        </div>
+                        <div class="project-body">
+                            <h4>Necesidad:</h4>
+                            <p> Se requería optimizar y agilizar la clasificación de comentarios de nueva app lanzada al mercado
+                                para realizar análisis de acogida.</p>
+                            
+                            <h4>Solución:</h4>
+                            <p>Se implementa un sistema de análisis de sentimientos, utilizando un modelo de lenguaje preentrenado
+                                basado en Transformers (Hugging Face) multilenguaje. Se disponibiliza en una interfaz construida en Streamlit
+                                para clasificación de mensajes individuales y un Script para la clasificación masiva de mensajes.</p>
+                            
+                            <h4>Resultados:</h4>
+                            <ul>
+                                <li>Clasificación automática de mensajes.</li>
+                                <li>Identificación optimizada de oportunidades de mejora.</li>
+                                <li>Feeedback estructurado que ayuda a tomar decisiones.</li>
+                                <li>Ahorro significativo en la tarea de análisis de comentarios.</li>
+                            </ul>
+
+                            <h4 style="text-align: center;"">Interfaz Streamlit</h4>
+                            <img src="img/sentimental.png" alt="sentimental interfaz" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
+                             <h4 style="text-align: center;"">Ejemplo clasificación múltiple</h4>
+                            <img src="img/sentimental_masiv.png" alt="processedData" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
+                            
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Transformers</span>
+                                <span class="tag">Sentiment Analysis</span>
+                                <span class="tag"></span>
+                            </div>
+                            
+                            <span class="metric">☑️ Baja operatividad</span>
+                        </div>
+                    </div>
+
+                     <!-- Proyecto 5 -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <p class="project-category">Series de Tiempo (Prophet - SARIMA)</p>
+                            <h3>Monitoreo de Errores Transaccionales con Series de Tiempo</h3>
+                        </div>
+                        <div class="project-body">
+                            <h4>Necesidad:</h4>
+                            <p> En el área de servicio al cliente y TI de varias entidades financieras necesitaba anticiparse a los errores transaccionales 
+                                para disponer recursos en los momentos de picos y garantizar un servicio más rápido y eficiente.</p>
+                            
+                            <h4>Solución:</h4>
+                            <p>Utilizar series de tiempo históricas para realizar  predicciones diarias de errores mediante los modelos Prophet y SARIMA, 
+                                aprovechando data de errores anteriores.</p>
+                            
+                            <h4>Resultados:</h4>
+                            <ul>
+                                <li>Predicción de los errores promedio días antes de materializarse. Hasta 30 días, estabilizado en 7 días para mayor confianza.</li>
+                                <li>Metodología de choque implementada: se prepara personal adicional en la mesa de ayuda en los días de predicción de altos errores.</li>
+                                
+                            </ul>
+
+                            <h4 style="text-align: center;"">Dashboard para visualizar errores pasados y futuros (predicción 7 días)</h4>
+                            <img src="img/serie de tiempo1.png" alt="st" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
+                             <h4 style="text-align: center;"">Comparación de predicciones con datos reales</h4>
+                            <img src="img/serie de tiempo 2.png" alt="Comparación predicciones vs datos reales" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
+                            
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Prophet</span>
+                                <span class="tag">statsmodels</span>
+                                <span class="tag">Dash</span>
+                            </div>
+                            
+                            <span class="metric">☑️ Predicción de errores</span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+
+
+
+
+
+
+
+            
             
             <!-- Automatización de Procesos -->
             <div class="category-section">
@@ -331,202 +539,8 @@
                 </div>
             </div>
 
-            <!-- Machine Learning -->
-            <div class="category-section">
-                <h3 class="category-title">🤖 Machine Learning y Analítica Aplicada</h3>
-                <div class="projects-grid">
-                    <!-- Proyecto 1 -->
-                    <div class="project-card">
-                        <div class="project-header">
-                            <p class="project-category">ML • Clasificación</p>
-                            <h3>Random Forest - Mantenimiento Preventivo</h3>
-                        </div>
-                        <div class="project-body">
-                            <h4>Necesidad:</h4>
-                            <p>Selección manual diaria de vehículos para mantenimiento preventivo en flota de +200 unidades. 
-                                Proceso tomaba 2 horas considerando tipo, placa par/impar, días mínimos y capacidad.</p>
-                            
-                            <h4>Solución:</h4>
-                            <p> Modelo Random Forest para clasificación automática de vehículos para mantenimiento (modelo entrenado con
-                                1 año de datos históricos). </p>
-                            
-                            <h4>Resultados:</h4>
-                            <ul>
-                                
-                                <li>Reducción del proceso de clasificación manual de 2h a 8 minutos con la automatización.</li>
-                                <li>Ahorro de 9 horas semanales.</li>
-                                <li>Democratización del proceso.</li>
-                            </ul>
 
 
-                            <h4 style="text-align: center;"">Árbol del RF</h4>
-                            <img src="img/arbol de RF.JPG.png" alt="Datanoprocess" style="max-width:100%; height:auto; margin-top:15px;" />
-                            
-                            <h4 style="text-align: center;""> Rendimiento Final</h4>
-                            <img src="img/rf5.jpg.png" alt="RF" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
-                            <img src="img/rf6.jpg" alt="RF2" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
-                            
-                            <div class="project-tags">
-                                <span class="tag">Python</span>
-                                <span class="tag">Scikit-learn</span>
-                                <span class="tag">Random Forest</span>
-                            </div>
-                            
-                            
-                            <span class="metric">⚡ 93% más rápido</span>
-                        </div>
-                    </div>
-
-                    <!-- Proyecto 2 -->
-                    <div class="project-card">
-                        <div class="project-header">
-                            <p class="project-category">ML • Detección de Anomalías</p>
-                            <h3>Isolation Forest - Detección de Fraude</h3>
-                        </div>
-                        <div class="project-body">
-                            <h4>Necesidad:</h4>
-                            <p>Identificar comportamientos transaccionales anómalos en sistema de pago con +1 millón de transacciones mensuales sin etiquetas previas de fraude.</p>
-                            
-                            <h4>Solución:</h4>
-                            <p>Implementación de Isolation Forest (método no supervisado) que aísla datos inusuales sin perfiles previos. Manejo de múltiples dimensiones y estandarización de datos.</p>
-                            
-                            <h4>Resultados:</h4>
-                            <ul>
-                                <li>Aumento de 0.01-0.02% en detección de anomalías.</li>
-                                <li>1000-2000 transacciones adicionales identificadas/mes.</li>
-                                <li>Complemento al sistema heurístico existente.</li>
-                                <li>Detección de aumentos inusuales en transaccionalidad.</li>
-                            </ul>
-                            
-                            <div class="project-tags">
-                                <span class="tag">Python</span>
-                                <span class="tag">Isolation Forest</span>
-                                <span class="tag">Anomaly Detection</span>
-                            </div>
-                            
-                            <span class="metric">🔍 +1000 alertas/mes</span>
-                        </div>
-                    </div>
-
-                    <!-- Proyecto 3 -->
-                    <div class="project-card">
-                        <div class="project-header">
-                            <p class="project-category">ML • Clustering</p>
-                            <h3>K-Means - Segmentación de Clientes</h3>
-                        </div>
-                        <div class="project-body">
-                            <h4>Necesidad:</h4>
-                            <p>Empresa financiera requería clasificar clientes según flujo de transaccionalidad y montos para encontrar 
-                                oportunidades comerciales y mejorar servicios.</p>
-                            
-                            <h4>Solución:</h4>
-                            <p>Clasificación mediante K-Means por transaccionalidad mensual y acumulada semestral. Monitoreo continuo del 
-                                comportamiento de clientes.</p>
-                            
-                            <h4>Resultados:</h4>
-                            <ul>
-                                <li>Identificación de 4 grupos: Muy alta, alta, mediana y baja transaccionalidad.</li>
-                                <li>Monitoreo mensual y semestral.</li>
-                                <li>Ajustes comerciales basados en datos.</li>
-                                <li>Mejora en estrategias de fidelización.</li>
-                            </ul>
-
-                            <img src="img/clusters.png" alt="clusters" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
-
-
-                            
-                            <div class="project-tags">
-                                <span class="tag">Python</span>
-                                <span class="tag">K-Means</span>
-                                <span class="tag">Clustering</span>
-                                <span class="tag">Segmentación</span>
-                            </div>
-                            
-                            <span class="metric">👥 Clientes Segmentados</span>
-                        </div>
-                    </div>
-
-                    <!-- Proyecto 4 -->
-                    <div class="project-card">
-                        <div class="project-header">
-                            <p class="project-category">ML • Analísis de Sentimientos con IA</p>
-                            <h3>Modelo Preentrenado - Sentiment Analysis</h3>
-                        </div>
-                        <div class="project-body">
-                            <h4>Necesidad:</h4>
-                            <p> Se requería optimizar y agilizar la clasificación de comentarios de nueva app lanzada al mercado
-                                para realizar análisis de acogida.</p>
-                            
-                            <h4>Solución:</h4>
-                            <p>Se implementa un sistema de análisis de sentimientos, utilizando un modelo de lenguaje preentrenado
-                                basado en Transformers (Hugging Face) multilenguaje. Se disponibiliza en una interfaz construida en Streamlit
-                                para clasificación de mensajes individuales y un Script para la clasificación masiva de mensajes.</p>
-                            
-                            <h4>Resultados:</h4>
-                            <ul>
-                                <li>Clasificación automática de mensajes.</li>
-                                <li>Identificación optimizada de oportunidades de mejora.</li>
-                                <li>Feeedback estructurado que ayuda a tomar decisiones.</li>
-                                <li>Ahorro significativo en la tarea de análisis de comentarios.</li>
-                            </ul>
-
-                            <h4 style="text-align: center;"">Interfaz Streamlit</h4>
-                            <img src="img/sentimental.png" alt="sentimental interfaz" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
-                             <h4 style="text-align: center;"">Ejemplo clasificación múltiple</h4>
-                            <img src="img/sentimental_masiv.png" alt="processedData" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
-                            
-                            <div class="project-tags">
-                                <span class="tag">Python</span>
-                                <span class="tag">Transformers</span>
-                                <span class="tag">Sentiment Analysis</span>
-                                <span class="tag"></span>
-                            </div>
-                            
-                            <span class="metric">☑️ Baja operatividad</span>
-                        </div>
-                    </div>
-
-                     <!-- Proyecto 5 -->
-                    <div class="project-card">
-                        <div class="project-header">
-                            <p class="project-category">Series de Tiempo (Prophet - SARIMA)</p>
-                            <h3>Monitoreo de Errores Transaccionales con Series de Tiempo</h3>
-                        </div>
-                        <div class="project-body">
-                            <h4>Necesidad:</h4>
-                            <p> En el área de servicio al cliente y TI de varias entidades financieras necesitaba anticiparse a los errores transaccionales 
-                                para disponer recursos en los momentos de picos y garantizar un servicio más rápido y eficiente.</p>
-                            
-                            <h4>Solución:</h4>
-                            <p>Utilizar series de tiempo históricas para realizar  predicciones diarias de errores mediante los modelos Prophet y SARIMA, 
-                                aprovechando data de errores anteriores.</p>
-                            
-                            <h4>Resultados:</h4>
-                            <ul>
-                                <li>Predicción de los errores promedio días antes de materializarse. Hasta 30 días, estabilizado en 7 días para mayor confianza.</li>
-                                <li>Metodología de choque implementada: se prepara personal adicional en la mesa de ayuda en los días de predicción de altos errores.</li>
-                                
-                            </ul>
-
-                            <h4 style="text-align: center;"">Dashboard para visualizar errores pasados y futuros (predicción 7 días)</h4>
-                            <img src="img/serie de tiempo1.png" alt="st" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
-                             <h4 style="text-align: center;"">Comparación de predicciones con datos reales</h4>
-                            <img src="img/serie de tiempo 2.png" alt="Comparación predicciones vs datos reales" style="max-width:100%; height:auto; margin-top:15px; display: block; margin-left: auto; margin-right: auto;" />
-                            
-                            <div class="project-tags">
-                                <span class="tag">Python</span>
-                                <span class="tag">Prophet</span>
-                                <span class="tag">statsmodels</span>
-                                <span class="tag">Dash</span>
-                            </div>
-                            
-                            <span class="metric">☑️ Predicción de errores</span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
         </div>
     </div>
 
