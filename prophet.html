@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Prophet - Predicción Terminales Medellín</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    
+</head>
+<body class="is-preload">
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <a href="index.html" class="logo">Home</a>
+    </header>
+
+    <!-- Main -->
+    <div id="main">
+
+        <!-- Post -->
+        <section class="post">
+            <header class="major">
+                <span class="date">ML / Forecasting</span>
+                <h1>Sistema de Predicción de Terminales - Medellín</h1>
+            </header>
+
+            <h2>Resumen</h2>
+            <p>
+                Desarrollo de un sistema de predicción que estima la cantidad de pasajeros que llegan diariamente a las terminales de transporte, 
+                permitiendo optimizar la capacidad operativa y mejorar la experiencia de los usuarios. La solución se basa en modelos de 
+                series de tiempo utilizando Prophet.
+            </p>
+
+            <div class="image main">
+                <img src="images/arquitectura_trans_llegadas.jpg" alt="Arquitectura del sistema" />
+            </div>
+
+            <h2>Problema</h2>
+            <p>
+                La ocupación diaria en una terminal de transporte varía diariamente. 
+                La gestión eficiente requiere predicciones confiables para tomar decisiones operativas, como cantidad de personal disponible, gestión de 
+                bahías de llegada de buses, sugerencia ded estrategias comerciales como valor agregado al arrendamiento de locales, entre otros.
+            </p>
+
+            <ul>
+                <li>
+                    <strong>Error crítico:</strong> Predicción muy alejada de la realidad, genera desabastecimiento o congestión.
+                </li>
+                <li>
+                    <strong>Error tolerable:</strong> Predicción cercana, impacto operativo bajo.
+                </li>
+            </ul>
+
+            <div class="image fit">
+                <img src="images/term_norte.jpg" alt="Terminales Medellín" />
+            </div>
+
+            <hr />
+
+            <h2>Enfoque</h2>
+
+            <p> El modelo utiliza Prophet para series de tiempo de cada terminal. Se alimentó con la data de llegadas de pasajeros de dos años, para predecir
+                la llegada de pasajeros del año siguiente. Incorpora eventos especiales como días festivos. Se utilizaron las métricas de evaluación MAE (Error Absoluto Medio),
+                 MAPE (Error Porcentual Absoluto Medio) y covertura de intervalos de confianza.
+            </p>
+
+            <p>Se comenzó con un modelo ETL, con la ingesta de la data directamente de API pública. A través de Polars y Pandas se realizó
+                un primer tratamiento dejando esta data en estado bronce y se almacena en contenedor de Azure Data Lake Gen2, en archivos Parquet 
+                (asegurando tipos de datos) particionados por lotes (10.000 filas por lote) y por año. Luego se exploró la data
+                por medio de técnicas de minería de datos y finalmente se pasó al entrenamiento y optimización del modelo.
+            </p>
+
+            <ul>
+                <li>ETL a través de consumo de API y almacenamiento en Azure.</li>
+                <li>Minería, análisis de datos y entrenamiento del modelo.</li>
+                <li>Series temporales de ocupación por terminal.</li>
+                <li>Feature engineering: eventos especiales, días festivos, tendencias.</li>
+                <li>Evaluación con métricas MAE, MAPE y cobertura de intervalos de confianza.</li>
+            </ul>
+
+            <div class="image fit">
+                <img src="images/mapa_calor_terminales.jpg" alt="Features y preparación de datos" />
+            </div>
+
+            <div class="image fit">
+                <img src="images/tendencia_pasajeros_term.jpg" alt="Features y preparación de datos" />
+            </div>
+
+
+            <hr />
+
+            <h2>Resultados</h2>
+
+            <h3>Métricas:</h3>
+            <div class="image fit">
+                <img src="images/metricas_prophet.jpg" alt="Resultados del modelo" />
+            </div>
+
+            <h3>Terminal del Norte:</h3>
+            <p>El modelo captura adecuadamente los patrones diarios y horas pico.
+                El error absoluto es consistente con el volumne de pasajeros y permite
+                estrategia de anticipación.
+            </p>
+
+            <h3>Terminal del Sur:</h3>
+            <p>Se observa mayor variabilidad relativa en ciertas franjas horarias (especialmente en primeras horas del día),
+                lo que impacta en métricas porcentuales.
+                No obstante, el modelo conserva capacidad para identificar tendencias y apoyar decisiones operativas.
+            </p>
+
+            <p>Finalmente, se prioriza la franja horaria del modelo entre las 6:00 - 21:00. Ya que es el periodo donde se concentra la 
+                mayor criticidad operativa y donde cuenta con mayor estabilidad y utilidad para la toma de decisiones.
+            </p>
+
+
+
+            <hr />
+
+			<!-- demo -->
+
+			<h2 style="text-align:center;">Demo Interactiva</h2>
+
+			<p style="text-align:center; max-width:800px; margin:0 auto 30px auto;">
+				La aplicación permite, a través de un selector de fecha y de terminal, generar proyecciones horarias por terminal con identificación automática 
+				de hora pico y KPIs.
+                Desplegada en Streamlit Cloud con modelo previamente entrenado en producción.
+			</p>
+
+
+
+			<!-- Screenshot / GIF -->
+			<div style="text-align:center; margin-bottom:35px;">
+				<img src="images/streamlit_prophet.jpg" 
+					alt="Demo Sistema Predictivo" 
+					style="width:100%; max-width:1000px; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.15);">
+			</div>
+
+			<!-- Botones -->
+			<div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-bottom:40px;">
+
+				<a href="https://sistemapredictivoterminales-gsgtnczz9wnzypt9yeyy4x.streamlit.app/" 
+				target="_blank"
+				style="padding:14px 28px; background:#1f77b4; color:white; 
+						text-decoration:none; font-weight:600; 
+						border-radius:8px; transition:0.3s;">
+					🚀 Ver Demo en Vivo
+				</a>
+
+				
+                <a href="https://github.com/Camilocamiloc/time_series_prophet_passenger_arrival_prediction_prophet-" 
+                target="_blank"
+                style="display:inline-flex; align-items:center; gap:8px;
+                    padding:8px 16px; background:#222; color:white; 
+                    text-decoration:none; font-weight:500; 
+                    font-size:14px;
+                    border-radius:6px; transition:0.3s;">
+                    
+                    <i class="fa-brands fa-github"></i>
+                    GitHub
+                    
+                </a>
+
+
+                
+                <p>La arquitectura y metodología de la presente demo fueron diseñadas originalmente para un entorno con datos confidenciales.
+                    Para efectos de portafolio, se desarrolló una versión equivalente con datos abiertos, preservando la lógica,
+                    métodos, el enfoque analítico y la optimización utilizada en producción.
+                </p>
+
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <hr />
+
+            <h3 style="text-align:center; margin-bottom:25px;">Stack Tecnológico</h3>
+
+            <style>
+            .tech-carousel { overflow: hidden; width: 100%; margin: 0 auto 40px auto; }
+            .tech-track { display: flex; align-items: center; gap: 60px; width: max-content; animation: scroll 30s linear infinite; }
+            .tech-carousel:hover .tech-track { animation-play-state: paused; }
+            .tech-item { text-align: center; min-width: 90px; }
+            .tech-item img { height: 45px; display: block; margin: 0 auto 6px auto; opacity: 0.85; transition: 0.3s ease; }
+            .tech-item span { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.5px; }
+            .tech-item:hover img { transform: scale(1.15); opacity: 1; }
+            @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+            </style>
+
+            <div class="tech-carousel">
+                <div class="tech-track">
+                    <div class="tech-item"><img src="images/other/python.svg" alt="Python"><span>Python</span></div>
+                    <div class="tech-item"><img src="images/other/pandas.svg" alt="Pandas"><span>Pandas</span></div>
+                    <div class="tech-item"><img src="images/other/polars.svg" alt="Polars"><span>Polars</span></div>
+                    <div class="tech-item"><img src="images/other/prophet.svg" alt="Prophet"><span>Prophet</span></div>
+					<div class="tech-item"><img src="images/other/azure.svg" alt="Azure-data lake gen2"><span>Azure-data lake gen2</span></div>
+                    <div class="tech-item"><img src="images/other/streamlit.svg" alt="Streamlit"><span>Streamlit</span></div>
+                    <div class="tech-item"><img src="images/other/javascript.svg" alt="JavaScript"><span>JavaScript</span></div>
+                    <!-- Duplicados para animación infinita -->
+                    <div class="tech-item"><img src="images/other/python.svg" alt="Python"><span>Python</span></div>
+                    <div class="tech-item"><img src="images/other/pandas.svg" alt="Pandas"><span>Pandas</span></div>
+                    <div class="tech-item"><img src="images/other/polars.svg" alt="Polars"><span>Polars</span></div>
+                    <div class="tech-item"><img src="images/other/prophet.svg" alt="Prophet"><span>Prophet</span></div>
+					<div class="tech-item"><img src="images/other/azure.svg" alt="Azure-data lake gen2"><span>Azure-data lake gen2</span></div>
+                    <div class="tech-item"><img src="images/other/streamlit.svg" alt="Streamlit"><span>Streamlit</span></div>
+                    <div class="tech-item"><img src="images/other/javascript.svg" alt="JavaScript"><span>JavaScript</span></div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- Copyright -->
+    <div id="copyright">
+        <ul>
+            <li>Portafolio </li>
+            <li>Cristian Camilo Valencia H. - <a>Data Specialist</a></li>
+        </ul>
+    </div>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

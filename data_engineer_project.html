@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Ingeniería de Datos - Control de Riesgo Financiero</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <style>
+		/* Bloqueo total por ID y Clase */
+		#navPanel, .navPanel, #navPanelToggle, .navPanelToggle, .titleBar {
+			display: none !important;
+			visibility: hidden !important;
+			opacity: 0 !important;
+			pointer-events: none !important;
+		}
+
+		/* Forzar que el menú normal NO se oculte en móviles (si es lo que buscas) */
+		body.is-navPanel-visible #navPanel {
+			display: none !important;
+		}
+	</style>
+</head>
+<body class="is-preload">
+
+<div id="wrapper">
+
+    <header id="header">
+        <a href="index.html" class="logo">Home</a>
+    </header>
+
+    <div id="main">
+
+        <section class="post">
+            <header class="major">
+                <span class="date">Data Engineering/SQL/BI</span>
+                <h1>Ecosistema End to End de Inteligencia Financiera: Ingeniería de Datos y BI Analítico</h1>
+                <p>Modernización de infraestructura de datos: De procesos manuales en archivos planos a un ecosistema automatizado con SQL, QA integrado y visualización estratégica.</p>
+            </header>
+
+            <h2>Resumen</h2>
+            <p>
+                Este proyecto representa la <b>transformación digital</b> de una unidad de riesgo financiero que operaba sin una base de datos centralizada. Se implementó una solución integral de ingeniería en Python que estandariza el procesamiento, la seguridad y el almacenamiento de datos en SQLite. El sistema actúa como un "filtro de confianza", asegurando que solo los datos validados lleguen al tablero de control en Power BI, eliminando errores manuales y protegiendo la información sensible de los clientes.
+            </p>
+
+            <div class="image main">
+                <img src="images/arquitectura_datamart.jpg" alt="Arquitectura del Sistema de Riesgos" />
+            </div>
+
+            <h2>El Desafío: El Riesgo de la Información Manual</h2>
+            <p>
+                En la entidad financiera, la gestión de datos dependía totalmente de procesos manuales y archivos Excel dispersos, careciendo de un motor SQL. Esta "oscuridad digital" generaba riesgos críticos para el área operativa:
+            </p>
+
+            <ul>
+                <li><strong>Inconsistencia de Datos:</strong> Sin validaciones automáticas, era imposible detectar registros duplicados o errores de digitación, alterando los cálculos de exposición crediticia.</li>
+                <li><strong>Vulnerabilidad de Privacidad:</strong> Datos sensibles de clientes (PII) circulaban sin protección, aumentando el riesgo de incumplimiento normativo.</li>
+                <li><strong>Ceguera Operativa:</strong> La consolidación de reportes tomaba horas de trabajo manual, impidiendo una reacción rápida ante alertas tempranas de riesgo crediticio.</li>
+            </ul>
+
+            <div class="image fit">
+                <img src="images/manual_work.jpg" alt="Contexto Financiero" />
+            </div>
+
+            <hr />
+
+            <h2>Enfoque Técnico y QA Automatizado</h2>
+            <p>
+                Para resolver esto, diseñé un pipeline de Python con una filosofía <b>"Fail-Fast"</b> (Falla Rápido). Antes de realizar cualquier ingesta en la base de datos, el sistema ejecuta un bucle de validación de doble nivel:
+            </p>
+
+            <ul>
+                <li><strong>QA de Funcionamiento (Unit Testing):</strong> Suite de pruebas que verifica que la lógica de anonimización y generación de firmas digitales (SHA-256) sea infalible.</li>
+                <li><strong>QA de Datos (Data Quality Gates):</strong> Auditoría en tiempo real que rechaza archivos corruptos o con esquemas incorrectos antes de tocar la base de datos.</li>
+                <li><strong>Trazabilidad por Logs:</strong> Sistema de logs profesional para auditoría total de cada movimiento de datos.</li>
+            </ul>
+
+            <p>
+                <b>Nota de Arquitectura:</b> Se implementó un modelo desacoplado donde Power BI consume datos validados de forma incremental. Esto protege el rendimiento del sistema transaccional y respeta las restricciones de seguridad del ecosistema corporativo.
+            </p>
+
+            <div class="image fit">
+                <img src="images/data_mart.jpg" alt="Validación de Calidad y Código" />
+            </div>
+
+            <hr />
+
+            <h2>Resultados e Impacto en el Negocio</h2>
+            <p>
+                La transición de procesos manuales a este flujo automatizado generó un impacto inmediato en la eficiencia y seguridad de la unidad:
+            </p>
+
+            <ul>
+                <li><strong>Eficiencia Operativa:</strong> Reducción del <b>85%</b> en el tiempo de preparación de reportes (de horas a menos de 10 minutos).</li>
+                <li><strong>Confiabilidad del 100%:</strong> Eliminación total de registros duplicados e inconsistentes gracias al sistema de deduplicación SHA-256.</li>
+                <li><strong>Protección de Datos:</strong> Anonimización automática del 100% de la información sensible, garantizando el cumplimiento de políticas de privacidad.</li>
+                <li><strong>Escalabilidad:</strong> Se estableció la primera infraestructura de datos sólida, lista para soportar futuros modelos predictivos.</li>
+            </ul>
+
+            
+
+            <hr />
+
+            <h2 style="text-align:center;">Producto Final: Dashboard de Riesgos</h2>
+            <p style="text-align:center; max-width:800px; margin:0 auto 30px auto;">
+                Visualización estratégica de control de riesgo crediticio a través de dashboard en Power BI.
+            </p>
+                <ul>
+                <li><strong>Arquitectura de Datos:</strong> Modelo en Estrella (Star Schema) con relaciones 1:N entre la tabla de hechos (Créditos) y dimensiones clave (Personas, Almacenes, Geografía y Calendario), garantizando un filtrado eficiente y alto rendimiento.</li>
+                
+                <div class="image fit">
+                    <img src="images/star_model_bi.jpg" alt="Dashboard de Control de Riesgo" />
+                </div>
+
+                <li><strong>Inteligencia de Negocio (DAX):</strong> Desarrollo de métricas para el cálculo de Exposición de Riesgo.</li>
+                <li><strong>Visualización & UX:</strong> Dashboard interactivo con KPIs críticos y análisis granular por municipio/almacén.</li>
+                
+            </ul>
+             <p>
+            Nota: Tablero basado en un modelo real en producción. La data expuesta y visualizada se encuentra totalmente anonimizada debido a su naturaleza confidencial.
+            </p>
+
+
+            <div class="image fit">
+                <img src="images/power_bi_risk.jpg" alt="Dashboard de Control de Riesgo" />
+            </div>
+
+            <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-bottom:40px;">
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiOTQ1ZWIxOGItYzk3MC00NzBiLWE3ZTctMzk3M2FkMjcwMzg0IiwidCI6Ijk5ZTFlNzIxLTcxODQtNDk4ZS04YWZmLWIyYWQ0ZTUzYzFjMiIsImMiOjR9" 
+                target="_blank"
+                style="padding:14px 28px; background:#f2c811; color:black; 
+                        text-decoration:none; font-weight:600; 
+                        border-radius:8px; transition:0.3s;">
+                    📊 Ver Tablero Interactivo
+                </a>
+
+                
+                
+            <a href="https://github.com/Camilocamiloc/data-engineering-risk-analytics-with-SQL-SQLite-" 
+            target="_blank"
+            style="display:inline-flex; align-items:center; gap:8px;
+                padding:8px 16px; background:#222; color:white; 
+                text-decoration:none; font-weight:500; 
+                font-size:14px;
+                border-radius:6px; transition:0.3s;">
+                
+                <i class="fa-brands fa-github"></i>
+                GitHub
+                
+            </a>
+
+            
+            </div>
+
+            <hr />
+
+            <h3 style="text-align:center; margin-bottom:25px;">Stack Tecnológico</h3>
+
+            <style>
+                .tech-carousel { overflow: hidden; width: 100%; margin: 0 auto 40px auto; }
+                .tech-track { display: flex; align-items: center; gap: 60px; width: max-content; animation: scroll 30s linear infinite; }
+                .tech-carousel:hover .tech-track { animation-play-state: paused; }
+                .tech-item { text-align: center; min-width: 90px; }
+                .tech-item img { height: 45px; display: block; margin: 0 auto 6px auto; opacity: 0.85; transition: 0.3s ease; }
+                .tech-item span { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.5px; }
+                .tech-item:hover img { transform: scale(1.15); opacity: 1; }
+                @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+            </style>
+
+            <div class="tech-carousel">
+                <div class="tech-track">
+                    <div class="tech-item"><img src="images/other/python.svg" alt="Python"><span>Python</span></div>
+                    <div class="tech-item"><img src="images/other/pandas.svg" alt="Pandas"><span>Pandas</span></div>
+                    <div class="tech-item"><img src="images/other/sqlite.png" alt="SQLite"><span>SQLite</span></div>
+                    <div class="tech-item"><img src="images/other/powerbi.png" alt="Power BI"><span>Power BI</span></div>
+                    <div class="tech-item"><img src="images/other/unittest.jpg" alt="Unittest"><span>Unittest</span></div>
+                    <div class="tech-item"><img src="images/other/logging.jpg" alt="Logging"><span>Logging</span></div>
+                    <div class="tech-item"><img src="images/other/python.svg" alt="Python"><span>Python</span></div>
+                    <div class="tech-item"><img src="images/other/pandas.svg" alt="Pandas"><span>Pandas</span></div>
+                    <div class="tech-item"><img src="images/other/sqlite.png" alt="SQLite"><span>SQLite</span></div>
+                    <div class="tech-item"><img src="images/other/powerbi.png" alt="Power BI"><span>Power BI</span></div>
+                    <div class="tech-item"><img src="images/other/unittest.jpg" alt="Unittest"><span>Unittest</span></div>
+                    <div class="tech-item"><img src="images/other/logging.jpg" alt="Logging"><span>Logging</span></div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <div id="copyright">
+        <ul>
+            <li>Portafolio </li>
+            <li>Cristian Camilo Valencia H. - <a>Data Specialist</a></li>
+        </ul>
+    </div>
+
+</div>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

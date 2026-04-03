@@ -1,0 +1,331 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Segmentación Conductual - KMeans</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+    <!-- Plotly CDN -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+		/* Bloqueo total por ID y Clase */
+		#navPanel, .navPanel, #navPanelToggle, .navPanelToggle, .titleBar {
+			display: none !important;
+			visibility: hidden !important;
+			opacity: 0 !important;
+			pointer-events: none !important;
+		}
+
+		/* Forzar que el menú normal NO se oculte en móviles (si es lo que buscas) */
+		body.is-navPanel-visible #navPanel {
+			display: none !important;
+		}
+	</style>
+</head>
+<body class="is-preload">
+
+<div id="wrapper">
+
+<header id="header">
+    <a href="index.html" class="logo">Home</a>
+</header>
+
+<div id="main">
+
+<section class="post">
+
+<header class="major">
+    <span class="date">ML / Clustering</span>
+    <h1>Segmentación Inteligente de Clientes</h1>
+</header>
+
+<h2>Resumen</h2>
+<p>
+Desarrollo de un sistema de segmentación basado en K-Means que clasifica entidades financieras
+según su comportamiento transaccional, frecuencia, recencia y nivel de fricción operativa (método RFM-E).
+La solución permite diferenciar perfiles estratégicos para optimizar decisiones comerciales y de riesgo.
+</p>
+
+<hr/>
+
+
+<div class="image main"><img src="images/kmeans_arquitectura.jpg" alt="" /></div>
+
+<hr/>
+
+<h2>Enfoque</h2>
+<ul>
+<li>Extracción de logs transaccionales</li>    
+<li>Ingeniería de variables tipo RFM extendido</li>
+<li>Clasificación no supervisada con K-Means</li>
+<li>Evaluación con Inertia y Silhouette Score</li>
+</ul>
+
+
+
+<hr/>
+
+<h2>¿Qué es RFM-E?</h2>
+<p>Es una metodología de análisis de clientes que agrupa a los usuarios según su comportamiento real. 
+    Combina cuatro indicadores clave para entender quién es el cliente y qué problemas está teniendo:</p>
+<ul>
+<li><strong>Recencia:</strong> Días desde la última actividad.</li>
+<li><strong>Frecuencia:</strong> Cantidad de transacciones.</li>
+<li><strong>Monto:</strong> Valor económico transaccionado.</li>
+<li><strong>Errores (E):</strong> % de intentos fallidos (Fricción técnica).</li>
+</ul>
+
+<p>Estas variables permiten detectar si un cliente se está alejando por falta de interés o por un 
+    fallo sistémico (quiere comprar, pero el sistema le falla).</p>
+
+<hr/>
+
+
+
+
+
+
+
+
+
+
+<h2>Resultados</h2>
+
+<p>
+La segmentación permitió identificar perfiles diferenciados:
+</p>
+
+<ul>
+<li><strong>Cluster Cuenta Corporativa:</strong> Transacciones de altas sumas de dineros con alta frecuencia y porcentajes bajos de errores (persona jurídicas).</li>
+<li><strong>Cluster Cliente Fiel:</strong> Cliente recurrente con tasa baja de error.</li>
+<li><strong>Cluster Fuga Crítica:</strong> Usuarios con bajo nivel de transacción (alta recencia) y porcentaje alto de errores.</li>
+
+</ul>
+
+<p>
+La identificación de cada cluster permite conocer el comportamiento de clientes y generar diferentes estrategias como aseguramiento de disponibilidad del servicio, programas de lealtad, recuperación, fidelización.
+</p>
+
+<hr/>
+
+
+            <h2 style="text-align:center;">Demo: Clasificador de Perfiles</h2>
+            <div class="demo-container">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <p>Este simulador presenta de forma conceptual la sensibilidad del modelo ante cambios en el comportamiento técnico del cliente. Al ajustar las variables, 
+                        se logra tanto la prevención del Churn por fallo sistémico como la identificación precisa del perfil de usuario (Institucional, Saludable o en Fuga) 
+                        al que pertenece dicho comportamiento para el negocio.</p>
+                    <p>Nota: Herramienta basada en un modelo real en producción. La data se encuentra totalmente anonimizada debido a su naturaleza de confidencialidad.</p>
+                    <p>EScoja uno de los perfiles especificados en los botones o altere los controles de cada métrica y se mostrará el tipo de cluster al que
+                        pertenece y el enfoque comercial.
+                    </p>
+
+
+                    <button class="btn-preset" onclick="setPreset('institucional')">Cuenta Corporativa</button>
+                    <button class="btn-preset" onclick="setPreset('saludable')">Cliente Fiel</button>
+                    <button class="btn-preset" onclick="setPreset('fuga')">Usuario Frustrado</button>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 col-12-xsmall">
+                        <label>Volumen Transaccional: <span id="val_tx" class="label-val">50</span></label>
+                        <input type="range" id="in_tx" min="0" max="100" value="50" oninput="updateVal('tx', this.value)">
+                        
+                        <label>Recencia (Días sin actividad): <span id="val_rec" class="label-val">10</span></label>
+                        <input type="range" id="in_rec" min="0" max="180" value="10" oninput="updateVal('rec', this.value)">
+                    </div>
+                    <div class="col-6 col-12-xsmall">
+                        <label>Tasa de Errores (%): <span id="val_err" class="label-val">2</span>%</label>
+                        <input type="range" id="in_err" min="0" max="100" value="2" oninput="updateVal('err', this.value)">
+                        
+                        <label>Monto Promedio: <span id="val_mon" class="label-val">500</span></label>
+                        <input type="range" id="in_mon" min="0" max="1000" value="500" oninput="updateVal('mon', this.value)">
+                    </div>
+                </div>
+
+                <div id="res_card" class="card-cluster">
+                    <h3 id="res_title"></h3>
+                    <p id="res_desc"></p>
+                </div>
+            </div>
+
+            <hr />
+            <h3>Distribución Espacial de la Cartera</h3>
+            <div id="chart_div" style="height: 500px;"></div>
+        </section>
+        
+
+            <div style="text-align:center;">
+                <a href="https://github.com/Camilocamiloc/smart-customer-segmentation-with-k-means-clustering" 
+                target="_blank"
+                style="display:inline-flex; align-items:center; gap:8px;
+                    padding:8px 16px; background:#222; color:white; 
+                    text-decoration:none; font-weight:500; 
+                    font-size:14px;
+                    border-radius:6px; transition:0.3s;">
+                    
+                    <i class="fa-brands fa-github"></i>
+                    GitHub
+                    
+                </a>
+            </div>
+
+
+            <h3 style="text-align:center; margin-bottom:25px;">Stack Tecnológico</h3>
+
+            <style>
+                .tech-carousel { overflow: hidden; width: 100%; margin: 0 auto 40px auto; }
+                .tech-track { display: flex; align-items: center; gap: 60px; width: max-content; animation: scroll 30s linear infinite; }
+                .tech-carousel:hover .tech-track { animation-play-state: paused; }
+                .tech-item { text-align: center; min-width: 90px; }
+                .tech-item img { height: 45px; display: block; margin: 0 auto 6px auto; opacity: 0.85; transition: 0.3s ease; }
+                .tech-item span { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.5px; }
+                .tech-item:hover img { transform: scale(1.15); opacity: 1; }
+                @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+            </style>
+
+
+
+
+
+
+
+
+            <div class="tech-carousel">
+                <div class="tech-track">
+                    <div class="tech-item"><img src="images/other/python.svg" alt="Python"><span>Python</span></div>
+                    <div class="tech-item"><img src="images/other/pandas.svg" alt="Pandas"><span>Pandas</span></div>
+                    <div class="tech-item"><img src="images/other/scikitlearn.svg" alt="SckitLearn"><span>Sckit-Learn</span></div>
+                    <div class="tech-item"><img src="images/other/javascript.svg" alt="JavaScript"><span>JavaScript</span></div>
+                    <div class="tech-item"><img src="images/other/plotly.svg" alt="Plotly"><span>Plotly</span></div>
+                    <div class="tech-item"><img src="images/other/python.svg" alt="Python"><span>Python</span></div>
+                    <div class="tech-item"><img src="images/other/pandas.svg" alt="Pandas"><span>Pandas</span></div>
+                    <div class="tech-item"><img src="images/other/scikitlearn.svg" alt="SckitLearn"><span>Sckit-Learn</span></div>
+                    <div class="tech-item"><img src="images/other/javascript.svg" alt="JavaScript"><span>JavaScript</span></div>
+                    <div class="tech-item"><img src="images/other/plotly.svg" alt="Plotly"><span>Plotly</span></div>
+                    
+                </div>
+            </div>
+
+        </section>
+    </div>
+    </div>
+    
+</div>
+
+<script>
+const clusters = [
+    { id: 'Institucional', tx: 90, rec: 5, err: 1, mon: 800, color: '#2ecc71', desc: 'Cuentas de alto volumen y estabilidad técnica. Requieren monitoreo de infraestructura.' },
+    { id: 'Activo Saludable', tx: 30, rec: 10, err: 3, mon: 300, color: '#3498db', desc: 'Clientes retail con uso recurrente y exitoso. Objetivo de fidelización.' },
+    { id: 'Fuga Crítica', tx: 5, rec: 120, err: 60, mon: 50, color: '#e74c3c', desc: 'Clientes que abandonaron tras múltiples errores técnicos. Requieren campaña de recuperación.' }
+];
+
+function updateVal(id, val) {
+    document.getElementById('val_' + id).innerText = val;
+    classify();
+}
+
+function setPreset(type) {
+    if(type === 'institucional') { setValues(95, 2, 1, 900); }
+    if(type === 'saludable') { setValues(40, 8, 2, 350); }
+    if(type === 'fuga') { setValues(5, 150, 75, 40); }
+    classify();
+}
+
+function setValues(tx, rec, err, mon) {
+    document.getElementById('in_tx').value = tx;
+    document.getElementById('in_rec').value = rec;
+    document.getElementById('in_err').value = err;
+    document.getElementById('in_mon').value = mon;
+    updateVal('tx', tx); updateVal('rec', rec); updateVal('err', err); updateVal('mon', mon);
+}
+
+function classify() {
+    const user = {
+        tx: document.getElementById('in_tx').value,
+        rec: document.getElementById('in_rec').value,
+        err: document.getElementById('in_err').value,
+        mon: document.getElementById('in_mon').value
+    };
+
+    let nearest = clusters[0];
+    let minDist = Infinity;
+
+    clusters.forEach(c => {
+        let d = Math.sqrt(Math.pow(c.tx - user.tx, 2) + Math.pow(c.rec/2 - user.rec/2, 2) + Math.pow(c.err - user.err, 2));
+        if(d < minDist) { minDist = d; nearest = c; }
+    });
+
+    const card = document.getElementById('res_card');
+    card.style.display = 'block';
+    card.style.borderColor = nearest.color;
+    document.getElementById('res_title').innerText = nearest.id;
+    document.getElementById('res_title').style.color = nearest.color;
+    document.getElementById('res_desc').innerText = nearest.desc;
+}
+
+const trace1 = {
+    x: [90, 30, 5], y: [800, 300, 50],
+    mode: 'markers+text',
+    text: ['Institucional', 'Saludable', 'Fuga'],
+    textposition: 'top center',
+    marker: { size: [60, 40, 30], color: ['#2ecc71', '#3498db', '#e74c3c'] },
+    type: 'scatter'
+};
+
+Plotly.newPlot('chart_div', [trace1], { 
+    title: 'Mapa de Segmentos (Volumen vs Valor)',
+    xaxis: { title: 'Frecuencia Transaccional' },
+    yaxis: { title: 'Monto Promedio' }
+});
+
+classify();
+
+
+
+</script>
+
+
+
+
+<div id="copyright">
+<ul>
+<li>Portafolio</li>
+<li>Cristian Camilo Valencia H. - <a>Data Specialist</a></li>
+</ul>
+</div>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script>
+
+
+
+</script>
+
+<style>
+        .demo-container { background: #f8f9fa; padding: 30px; border-radius: 15px; color: #333; }
+        .card-cluster { padding: 20px; border-radius: 10px; margin-top: 20px; display: none; text-align: center; border: 2px solid #ddd; }
+        .btn-preset { margin: 5px; cursor: pointer; background: #666; color: white; border: none; padding: 8px 15px; border-radius: 5px; }
+        .btn-preset:hover { background: #1f77b4; }
+        .label-val { font-weight: bold; color: #1f77b4; }
+        input[type=range] { width: 100%; margin: 15px 0; }
+        /* Estilo para el resumen inicial */
+        .resumen-ejecutivo { background: #1f77b4; color: white; padding: 25px; border-radius: 10px; margin-bottom: 40px; }
+        .resumen-ejecutivo h2 { color: white; margin-bottom: 10px; }
+    </style>
+
+</body>
+</html>

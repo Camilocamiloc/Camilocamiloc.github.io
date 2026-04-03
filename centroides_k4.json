@@ -1,0 +1,34 @@
+[
+  {
+    "cluster_k4":0,
+    "total_tx":0.0190804361,
+    "monto_promedio_mensual":0.0056560508,
+    "frecuencia_mensual":0.0190905441,
+    "recencia":0.0393904172,
+    "tasa_errores":0.3192050026
+  },
+  {
+    "cluster_k4":1,
+    "total_tx":0.0000018448,
+    "monto_promedio_mensual":0.010565806,
+    "frecuencia_mensual":0.0000052688,
+    "recencia":0.3982921348,
+    "tasa_errores":1.0
+  },
+  {
+    "cluster_k4":2,
+    "total_tx":0.7370704771,
+    "monto_promedio_mensual":0.011877218,
+    "frecuencia_mensual":0.7370687447,
+    "recencia":0.0,
+    "tasa_errores":0.0838703961
+  },
+  {
+    "cluster_k4":3,
+    "total_tx":0.0293003154,
+    "monto_promedio_mensual":0.020176688,
+    "frecuencia_mensual":0.0295326414,
+    "recencia":0.0046323674,
+    "tasa_errores":0.1425826509
+  }
+]

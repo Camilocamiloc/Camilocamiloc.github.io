@@ -1,0 +1,627 @@
+<!DOCTYPE HTML>
+<!--
+	
+	
+	Free for personal and commercial use under the license
+-->
+<html>
+	<head>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+		<title>Random Forest - Clasificator</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+		/* Bloqueo total por ID y Clase */
+		#navPanel, .navPanel, #navPanelToggle, .navPanelToggle, .titleBar {
+			display: none !important;
+			visibility: hidden !important;
+			opacity: 0 !important;
+			pointer-events: none !important;
+		}
+
+		/* Forzar que el menú normal NO se oculte en móviles (si es lo que buscas) */
+		body.is-navPanel-visible #navPanel {
+			display: none !important;
+		}
+	</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Home</a>
+					</header>
+
+				<!-- Nav
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">This is Massively</a></li>
+							<li class="active"><a href="generic.html">Generic Page</a></li>
+							<li><a href="elements.html">Elements Reference</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav> -->
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">Machine Learning</span>
+									<h1>Sistema de Priorización Predictiva de Mantenimiento <br />
+									</h1>						
+								</header>
+
+									<h2>Resumen</h2>
+									<p>
+									Se desarrolló un sistema de machine learning que prioriza diariamente qué vehículos deben ingresar 
+									a mantenimiento cuando la capacidad del taller es limitada.
+									En lugar de solo clasificar si un vehículo necesita mantenimiento, el sistema genera un ranking de 
+									riesgo que permite seleccionar los casos más críticos.
+									</p>
+									<p>
+									El modelo fue optimizado para minimizar errores críticos (no detectar un vehículo que realmente requería mantenimiento) y fue evaluado completamente fuera de muestra antes de su despliegue.
+									</p>
+
+
+
+
+								<div class="image main"><img src="images/rf_arquitectura.jpg" alt="" /></div>
+
+
+								
+								<h2>Problema</h2>
+									<p>
+									La flota cuenta con aproximadamente 250 vehículos, pero solo es posible realizar mantenimiento a 50 por día.
+									El desafío no es simplemente clasificar vehículos, sino priorizar correctamente bajo una restricción operativa de capacidad.
+									</p>
+
+									<ul>
+										<li>
+											<strong>Falso Negativo (crítico):</strong>
+											El modelo indica que un vehículo no necesita mantenimiento, pero sí lo necesitaba.
+											Puede generar fallas operativas y mayores costos.
+										</li>
+										<li>
+											<strong>Falso Positivo (tolerable):</strong>
+											El modelo prioriza un vehículo que finalmente no era urgente.
+											Se utiliza capacidad de taller, pero no se produce una falla.
+										</li>
+									</ul>
+
+									<p>
+									El sistema fue diseñado para minimizar falsos negativos, incluso si eso implica aceptar algunos falsos positivos.
+									</p>
+
+									<div class="image fit">
+										<img src="images/capacidad_taller.jpg" 
+										alt="Restricción de capacidad operativa" 
+										style="width:auto !important; max-width:550px; height:auto; display:block; margin:0 auto;"/>
+									</div>
+
+									<hr />
+
+									<h2>Enfoque</h2>
+									<p>El sistema se compone de dos capas:</p>
+
+									<h3>Modelo Predictivo</h3>
+									<ul>
+										<li>Feature engineering temporal (intervalos históricos, ventanas móviles, estadísticas acumulativas).</li>
+										<li>División estricta por fecha para evitar data leakage.</li>
+										<li>Random Forest con manejo de desbalance de clases.</li>
+										<li>Evaluación completamente out-of-sample (train / validation / test).</li>
+									</ul>
+
+
+
+									<div class="image fit">
+										<img src="images/features_rf.jpg" 
+										alt="Importancia de variables del modelo" 
+										style="width:auto !important; max-width:550px; height:auto; display:block; margin:0 auto;"/>
+									</div>
+
+
+									<h3>Motor de Priorización</h3>
+									<p>
+									Las probabilidades generadas por el modelo se transforman en un ranking diario.
+									Se seleccionan los 50 vehículos con mayor riesgo para convertir la predicción en decisión operativa.
+									</p>
+
+
+									<hr />
+
+									<h2>Resultados (Test Out-of-Sample)</h2>
+
+
+									<p>
+									Dado que el costo principal es no detectar un vehículo crítico, 
+									la métrica clave es el recall de la clase prioritaria (requiere mantenimiento).</p>
+									
+									<h3>Resultados en conjunto de prueba:</h3>
+
+									<ul>
+										<li>
+											<strong>Recall clase prioritaria: 98%</strong>
+											→ El sistema detecta casi todos los vehículos que realmente 
+											necesitaban mantenimiento.
+										</li>
+										<li>
+											<strong>Precision clase prioritaria: 86%</strong>
+											→ Cuando el modelo prioriza un vehículo, acierta en la mayoría de los casos.
+										</li>
+										<li>
+											<strong>AUC-PR: 0.86</strong>
+											→ Buena capacidad de ranking en un escenario desbalanceado.
+										</li>
+									</ul>
+									<p>
+									Estos resultados indican que el sistema cumple su objetivo principal:
+									reducir al mínimo los falsos negativos, que representan el mayor riesgo operativo.
+								</p>
+
+
+
+
+
+
+
+
+
+									<div class="image fit">
+										<img src="images/precision_recall_rf.jpg" 
+										alt="Curva Precision-Recall" 
+										style="width:auto !important; max-width:300px; height:auto; display:block; margin:0 auto;" />
+										</div>
+									
+
+
+									<div class="image fit">
+										<img src="images/matriz_confusion_rf.jpg" 
+											alt="Matriz de Confusión"
+											style="width:auto !important; max-width:300px; height:auto; display:block; margin:0 auto;" />
+									</div>
+
+
+
+
+
+									<p>
+										“La matriz de confusión muestra que el modelo detecta correctamente la mayoría 
+										de los vehículos que necesitan mantenimiento (19,541 de 19,913). Aunque hay falsos 
+										positivos (3,055), los falsos negativos críticos son pocos (372), lo que valida que 
+										el modelo está optimizado para maximizar la seguridad operativa.”
+								    </p>
+
+
+									
+							</section>
+
+
+
+
+<section class="post">
+    <header class="major">
+        <h2 style="color:rgb(22, 22, 22);">Demo Predicción de Mantenimiento</h2>
+    </header>
+
+	<p style="font-size:0.9em; color:#666;">
+    Esta demo funciona a través de API donde se disponibiliza el modelo, se encuentra desplegado en Render.
+	Utiliza algunos días disponibles (29–31 diciembre 2024) para efectos 
+	de demostración del funcionamiento en producción. 
+    El modelo está diseñado para ejecutarse diariamente sobre datos actualizados. 
+    
+	</p>
+	<p style="font-size:0.9em; color:#666;">La información ha sido totalmente anonimizada debido a su carácter confidencial.</p>
+
+
+    <p style="color:rgb(18, 17, 17);">Selecciona una fecha, el sistema evalúa todos los vehículos y presenta los 50 con mayor probabilidad de requerir mantenimiento..</p>
+
+    <label for="fecha_demo" style="display:block; margin-bottom:5px; color:rgb(21, 20, 20);">Fecha predicción:</label>
+    <input type="date" 
+			id="fecha_demo" 
+			min="2024-12-29"
+			max="2024-12-31"
+			value="2024-12-31"
+			style="padding:5px; margin-bottom:10px;">
+
+    <button id="btn_demo" style="padding:7px 15px; background-color:#1f77b4; border:none; color:white; cursor:pointer;">
+        Generar Predicción
+    </button>
+
+    <div id="demo_result" style="margin-top:20px; overflow-x:auto;"></div>
+
+    <!-- Gráficos -->
+    <div id="charts" style="display:flex; flex-wrap:wrap; gap:20px; margin-top:20px;">
+        <canvas id="top10Chart" style="flex:1 1 300px; background:#050404; padding:10px;"></canvas>
+        <canvas id="histChart" style="flex:1 1 300px; background:#1a1a1a; padding:10px;"></canvas>
+        <canvas id="pieChart" style="flex:1 1 300px; background:#1a1a1a; padding:10px;"></canvas>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Referencias globales a los gráficos
+let top10ChartInstance = null;
+let histChartInstance = null;
+let pieChartInstance = null;
+
+async function fetchDemo(fecha) {
+    const url = `https://api-mantenimiento-vlth.onrender.com/demo${fecha ? '?fecha=' + fecha : ''}`;
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Error en la API");
+        return await response.json();
+    } catch (err) {
+        console.error(err);
+        return null;
+    }
+}
+
+async function updateDemo() {
+    const fecha = document.getElementById("fecha_demo").value;
+    const resultDiv = document.getElementById("demo_result");
+    resultDiv.innerHTML = "<p style='color:black;'>⏳ Generando predicción, si es la primera vez puede tardar algunos segundos...</p>";
+
+    // Aviso si la API tarda más de 5s (puede estar dormida)
+    const timeout = setTimeout(() => {
+        resultDiv.innerHTML = "<p style='color:black;'>⚠️ La API está despierta. Espera unos segundos y vuelve a presionar Generar Predicción.</p>";
+    }, 30000);
+
+    const data = await fetchDemo(fecha);
+    clearTimeout(timeout);
+
+    if (!data) return;
+
+    // ---------- Tabla ----------
+    if (data.length === 0) {
+        resultDiv.innerHTML = "<p style='color:white;'>No hay datos para esa fecha.</p>";
+    } else {
+        let html = `<table class="demo-table" style="width:100%; border-collapse: collapse; background-color:#1a1a1a; color:white; border: 1px solid #444;">
+                        <thead>
+                            <tr style="background-color:gray; color:white;">
+                                <th style="padding:5px; border:1px solid #444;">Vehículo</th>
+                                <th style="padding:5px; border:1px solid #444;">Tipología</th>
+                                <th style="padding:5px; border:1px solid #444;">Probabilidad</th>
+                                <th style="padding:5px; border:1px solid #444;">Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+        data.forEach(row => {
+            html += `<tr style="transition: background 0.2s;">
+                        <td style="color:white; padding:5px; border:1px solid #444;">${row['Número interno unidad']}</td>
+                        <td style="color:white; padding:5px; border:1px solid #444;">${row['tipologia']}</td>
+                        <td style="color:white; padding:5px; border:1px solid #444;">${(row['prob_mantenimiento']*100).toFixed(1)}%</td>
+                        <td style="color:white; padding:5px; border:1px solid #444;">${row['FECHA'].split('T')[0]}</td>
+                    </tr>`;
+        });
+        html += `</tbody></table>`;
+        resultDiv.innerHTML = html;
+
+        // Hover en filas
+        const rows = document.querySelectorAll(".demo-table tbody tr");
+        rows.forEach(r => {
+            r.onmouseenter = () => r.style.backgroundColor = "#2a2a2a";
+            r.onmouseleave = () => r.style.backgroundColor = "transparent";
+        });
+    }
+
+    // ---------- Gráficos ----------
+    const probs = data.map(d => d.prob_mantenimiento);
+    const top10 = [...data].sort((a,b)=>b.prob_mantenimiento - a.prob_mantenimiento).slice(0,10);
+    const tipologias = {};
+    data.forEach(d => { tipologias[d.tipologia] = (tipologias[d.tipologia] || 0) + 1; });
+
+    const top10Labels = top10.map(d => d['Número interno unidad']);
+    const top10Values = top10.map(d => d.prob_mantenimiento*100);
+
+    if(top10ChartInstance) top10ChartInstance.destroy();
+    top10ChartInstance = new Chart(document.getElementById('top10Chart'), {
+        type: 'bar',
+        data: { labels: top10Labels, datasets: [{ label: 'Probabilidad (%)', data: top10Values, backgroundColor: '#ff6b6b' }] },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            plugins: { legend:{display:false}, title:{display:true,text:'Top 10 vehículos por riesgo', color:'white'} },
+            scales: { x:{beginAtZero:true,max:100,ticks:{color:'white'}}, y:{ticks:{color:'white'}} }
+        }
+    });
+
+    const bins = Array.from({length: 10}, (_,i) => i*0.1);
+    const histCounts = bins.map((b,i) => probs.filter(p => p>=b && (i<bins.length-1 ? p<(b+0.1) : p<=1)).length);
+
+    if(histChartInstance) histChartInstance.destroy();
+    histChartInstance = new Chart(document.getElementById('histChart'), {
+        type: 'bar',
+        data: { labels: bins.map(b=> (b*100).toFixed(0)+'-'+((b+0.1)*100).toFixed(0)+'%'), datasets:[{ label:'Cantidad de vehículos', data: histCounts, backgroundColor:'#1f77b4' }] },
+        options:{ responsive:true, plugins:{ legend:{display:false}, title:{display:true,text:'Distribución de probabilidad',color:'white'} }, scales:{ x:{ticks:{color:'white'}}, y:{beginAtZero:true,ticks:{color:'white'}} } }
+    });
+
+    if(pieChartInstance) pieChartInstance.destroy();
+    pieChartInstance = new Chart(document.getElementById('pieChart'), {
+        type:'pie',
+        data:{ labels: Object.keys(tipologias), datasets:[{ data: Object.values(tipologias), backgroundColor:['#ff6b6b','#1f77b4','#ffa500'] }] },
+        options:{ responsive:true, plugins:{ legend:{labels:{color:'white'}}, title:{display:true,text:'Tipologías seleccionadas',color:'white'} } }
+    });
+}
+
+// Evento click
+document.getElementById("btn_demo").addEventListener("click", updateDemo);
+
+// Ping automático al cargar la página para “despertar” la API
+window.addEventListener('load', async () => {
+    await fetchDemo();
+});
+</script>
+
+<div style="text-align:center;">
+    <a href="https://github.com/Camilocamiloc/api-mantenimiento" 
+    target="_blank"
+    style="display:inline-flex; align-items:center; gap:8px;
+           padding:8px 16px; background:#222; color:white; 
+           text-decoration:none; font-weight:500; 
+           font-size:14px;
+           border-radius:6px; transition:0.3s;">
+        
+        <i class="fa-brands fa-github"></i>
+        GitHub
+        
+    </a>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<hr style="margin:50px 0;">
+
+<h3 style="text-align:center; margin-bottom:25px;">
+    Stack Tecnológico
+</h3>
+
+<style>
+.tech-carousel {
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto 40px auto;
+}
+
+.tech-track {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    width: max-content;
+    animation: scroll 30s linear infinite;
+}
+
+.tech-carousel:hover .tech-track {
+    animation-play-state: paused;
+}
+
+.tech-item {
+    text-align: center;
+    min-width: 90px;
+}
+
+.tech-item img {
+    height: 45px;
+    display: block;
+    margin: 0 auto 6px auto;
+    opacity: 0.85;
+    transition: 0.3s ease;
+}
+
+.tech-item span {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.tech-item:hover img {
+    transform: scale(1.15);
+    opacity: 1;
+}
+
+/* Animación infinita */
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+</style>
+
+<div class="tech-carousel">
+    <div class="tech-track">
+
+        <!-- Primera ronda -->
+        <div class="tech-item">
+            <img src="images/other/python.svg" alt="Python">
+            <span>Python</span>
+        </div>
+
+        <div class="tech-item">
+            <img src="images/other/pandas.svg" alt="Pandas">
+            <span>Pandas</span>
+        </div>
+
+        <div class="tech-item">
+            <img src="images/other/scikitlearn.svg" alt="Scikit-Learn">
+            <span>Scikit-Learn</span>
+        </div>
+
+        <div class="tech-item">
+            <img src="images/other/fastapi.svg" alt="FastAPI">
+            <span>FastAPI</span>
+        </div>
+
+		<div class="tech-item">
+            <img src="images/other/render.png" alt="Render">
+            <span>Render</span>
+        </div>
+
+        <div class="tech-item">
+            <img src="images/other/chartdotjs.svg" alt="Chart.js">
+            <span>Chart.js</span>
+        </div>
+
+        <div class="tech-item">
+            <img src="images/other/javascript.svg" alt="JavaScript">
+            <span>JavaScript</span>
+        </div>
+
+        <!-- Duplicados para efecto infinito -->
+        <div class="tech-item">
+            <img src="images/other/python.svg" alt="Python">
+            <span>Python</span>
+        </div>
+
+        <div class="tech-item">
+            <img src="images/other/pandas.svg" alt="Pandas">
+            <span>Pandas</span>
+        </div>
+
+        <div class="tech-item">
+            <img src="images/other/scikitlearn.svg" alt="Scikit-Learn">
+            <span>Scikit-Learn</span>
+        </div>
+
+        <div class="tech-item">
+            <img src="images/other/fastapi.svg" alt="FastAPI">
+            <span>FastAPI</span>
+        </div>
+
+
+		<div class="tech-item">
+            <img src="images/other/render.png" alt="Render">
+            <span>Render</span>
+        </div>
+
+
+
+
+        <div class="tech-item">
+            <img src="images/other/chartdotjs.svg" alt="Chart.js">
+            <span>Chart.js</span>
+        </div>
+
+
+        <div class="tech-item">
+            <img src="images/other/javascript.svg" alt="JavaScript">
+            <span>JavaScript</span>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					</div>
+
+				<!-- Footer
+					<footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section>
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>1234 Somewhere Road #87257<br />
+								Nashville, TN 00000-0000</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p><a href="#">(000) 000-0000</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="#">info@untitled.tld</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer> -->
+
+
+
+
+
+
+				
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>Portafolio </li><li>Cristian Camilo valencia H. - <a>Data Specialist</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
